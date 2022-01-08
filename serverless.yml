@@ -11,7 +11,7 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-east-2:284507394080:table/LibraryTable
+        - arn:aws:dynamodb:us-east-2:731764512235:table/LibraryTable
 
 functions:
   app:
