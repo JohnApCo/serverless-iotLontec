@@ -43,13 +43,18 @@ function store(req,res){
     if (hasErrors){
         res.json(result);
     }else{
-        const { name, codTarjeta, nSensor } = req.body;
+        const { chipId, tReset, timeObst, countExc, capacity, counter, inputs, outputs} = req.body;
         const id = v4();
         const newCounter = {
         id,
-        name,
-        codTarjeta,
-        nSensor
+        chipId,
+        tReset,
+        timeObst, 
+        countExc, 
+        capacity, 
+        counter, 
+        inputs, 
+        outputs
         };
         const params = {
             TableName: "DevicesTable",
@@ -95,16 +100,21 @@ function update(req,res){
         res.json(result);
     }else{
         const id = req.params.uid;
-        const { name, codTarjeta, nSensor } = req.body;
+        const { chipId, tReset, timeObst, countExc, capacity, counter, inputs, outputs} = req.body;
         const params = {
         TableName: "DevicesTable",
         Key: { id },
-        UpdateExpression: "set name = :name, codTarjeta = :codTarjeta, nSensor = :nSensor ",
+        UpdateExpression: "set chipId = :chipId, tReset = :tReset, timeObst = :timeObst, countExc =:countExc, capacity= :capacity, counter = :counter, inputs = :inputs, outputs = :outputs ",
         ConditionExpression: "id = :id",
         ExpressionAttributeValues: {
-            ":name": name,
-            ":codTarjeta": codTarjeta,
-            ":nSensor": nSensor,
+            ":chipId": chipId,
+            ":tReset": tReset,
+            ":timeObst": timeObst,
+            ":countExc": countExc,
+            ":capacity": capacity,
+            ":counter": counter,
+            ":inputs": inputs,
+            ":outputs": outputs,
             ":id": id
         },
         ReturnValues: "ALL_NEW",
