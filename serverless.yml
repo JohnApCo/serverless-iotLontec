@@ -11,40 +11,35 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-east-2:731764512235:table/LibraryTable
+        - arn:aws:dynamodb:us-east-2:731764512235:table/DevicesTable
+#        - arn:aws:dynamodb:us-east-2:731764512235:table/LibraryTable
 
 functions:
   app:
     handler: index.handler
     events:
       - http:
-          path: /api/library/books
+          path: /api/devices/counters
           method: GET
       - http:
-          path: /api/library/books/{uid}
+          path: /api/devices/counters/{uid}
           method: GET
       - http:
-          path: /api/library/books
+          path: /api/devices/counters
           method: POST
       - http:
-          path: /api/library/books/{uid}
+          path: /api/devices/counters/{uid}
           method: PUT
       - http:
-          path: /api/library/books/{uid}
+          path: /api/devices/counters/{uid}
           method: DELETE
-      - http:
-          path: /api/post/article
-          method: GET
-      - http:
-          path: /api/post/article
-          method: POST
 
 resources:
   Resources:
     TaskTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: LibraryTable
+        TableName: DevicesTable
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
